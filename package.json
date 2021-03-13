@@ -5,10 +5,10 @@
   "author": "First Last <first.last@example.com>",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "pm2-runtime start ecosystem.config.js --env production"
   },
   "dependencies": {
     "@hapi/hapi": "^20.1.0",
-    "express": "^4.16.1"
+    "pm2": "^4.5.5"
   }
 }
