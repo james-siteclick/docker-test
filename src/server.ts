@@ -1,5 +1,7 @@
 "use strict";
 
+require("dotenv").config({ path: __dirname + "/.env" });
+
 import * as laabr from "laabr";
 import * as Hapi from "@hapi/hapi";
 
@@ -20,6 +22,7 @@ const init: Hapi.server = async () => {
       colored: true,
     },
   });
+  await server.register(require("./typeorm"));
 
   // Register routes
   server.route({
@@ -31,7 +34,7 @@ const init: Hapi.server = async () => {
   });
 
   await server.start();
-  server.log("Server running on %s", server.info.uri);
+  server.log(`Server running on ${server.info.uri} in ${process.env.NODE_ENV}`);
 
   return server;
 };
