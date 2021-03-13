@@ -1,5 +1,8 @@
 FROM node:14
 
+# Install pm2
+RUN npm install pm2 -g
+
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -15,7 +18,6 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-# EXPOSE 8080
-# CMD [ "node", "server.js" ]
+EXPOSE 8080
 
-CMD node server.js -p $PORT 
+CMD npm start -p $PORT 

@@ -1,5 +1,7 @@
 "use strict";
 
+const laabr = require("laabr");
+
 // Constants
 const PORT = process.env.PORT || 8080;
 const HOST = "0.0.0.0";
@@ -10,6 +12,13 @@ const init = async () => {
   const server = Hapi.server({
     port: PORT,
     host: HOST,
+  });
+
+  await server.register({
+    plugin: laabr,
+    options: {
+      colored: true,
+    },
   });
 
   server.route({
