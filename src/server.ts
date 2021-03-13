@@ -1,19 +1,19 @@
 "use strict";
 
-const laabr = require("laabr");
+import * as laabr from "laabr";
+import * as Hapi from "@hapi/hapi";
+
+import config from "./config";
 
 // Constants
 const PORT = process.env.PORT || 8080;
 const HOST = "0.0.0.0";
 
-const Hapi = require("@hapi/hapi");
+const init: Hapi.server = async () => {
+  // Create server
+  const server: Hapi.server = Hapi.server(config.server);
 
-const init = async () => {
-  const server = Hapi.server({
-    port: PORT,
-    host: HOST,
-  });
-
+  // Register plugins
   await server.register({
     plugin: laabr,
     options: {
@@ -21,20 +21,23 @@ const init = async () => {
     },
   });
 
+  // Register routes
   server.route({
     method: "GET",
     path: "/",
-    handler: (request, h) => {
+    handler: (request: Hapi.Request) => {
       return "Hello World (hapi)!";
     },
   });
 
   await server.start();
-  console.log("Server running on %s", server.info.uri);
+  server.log("Server running on %s", server.info.uri);
+
+  return server;
 };
 
-process.on("unhandledRejection", (err) => {
-  console.log(err);
+process.on("unhandledRejection", (err: Error) => {
+  console.error(err);
   process.exit(1);
 });
 
