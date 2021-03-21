@@ -9,7 +9,16 @@ WORKDIR /opt/api
 FROM base as app 
 
 COPY package*.json ./
+COPY tsconfig.json ./
+COPY src/**/*.* ./src
 
+# Install Node modules
 RUN npm i
+
+# Compile source
+RUN npx tsc
+
+# Run
+CMD npm run start:production 
 
 EXPOSE 3000
