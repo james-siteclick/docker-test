@@ -16,4 +16,6 @@ COPY package*.json ./
 
 RUN npm i 
 
+RUN tsc
+
 EXPOSE 3000

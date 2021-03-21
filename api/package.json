@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "tsc-watch --onFirstSuccess \"nodemon dist/server.js\"",
-    "start:production": "tsc && nodemon dist/server.js"
+    "start:production": "nodemon dist/server.js"
   },
   "author": "",
   "license": "ISC",
