@@ -9,7 +9,7 @@ services:
       - db
     volumes:
       - ./api:/opt/api:delegated
-    command: ["npm", "run", "start"]
+    command: ["npm", "run", "start:dev"]
 
   db:
     image: postgres:12-alpine
