@@ -22,7 +22,7 @@ const init: Hapi.server = async () => {
     method: "GET",
     path: "/",
     handler: (request: Hapi.Request) => {
-      return "Hello World TypeScript Hapi";
+      return "Hello World there Hapi";
     },
   });
 
